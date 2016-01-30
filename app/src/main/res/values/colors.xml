@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Установка цвета для всплывающего окна -->
+    <color name="color_accent">#FF4081</color>
+
+    <!--Установка цвета для иконки -->
+    <color name= "icon_color">#ffffff</color>
+
+    <!--Цвета для синий темы -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <!--Цвета для красной темы -->
+    <color name="actionBar_red">#FF0000</color>
+    <color name="statusBar_redDark">#CD1D1D</color>
+
+    <!--Цвета для зеленой темы -->
+    <color name="actionBar_green">#11AC11</color>
+    <color name="statusBar_greenDark">#013220</color>
+
+
 </resources>
