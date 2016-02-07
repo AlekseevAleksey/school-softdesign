@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="color_menu">#FFFFFF</color>
+    <color name="color_transparent">#80000000</color>
+    
+    <color name="blue">#303F9F</color>
+
+    <color name="drawer_font">#bccbcc</color>
+
+
 </resources>
