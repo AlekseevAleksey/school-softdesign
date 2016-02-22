@@ -3,19 +3,25 @@ package com.softdesign.school.ui.activities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.softdesign.school.R;
 import com.softdesign.school.ui.fragments.ContactsFragment;
 import com.softdesign.school.ui.fragments.ProfileFragment;
@@ -30,15 +36,21 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String VISABLE_KEY = "VISABLE";
 
+
+    Toolbar mToolbar;
     private NavigationView mNavigationView;
     private DrawerLayout mNavigationDrawer;
     private Fragment mFragment;
     private FrameLayout mFrameConteiner;
     private ImageView mImageView;
+    public AppBarLayout AppBar;
+    private CollapsingToolbarLayout mCollapsingToolbar;
+
+    public AppBarLayout.LayoutParams params = null;
 
 
-
-    Toolbar mToolbar;
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +58,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Lg.e(this.getLocalClassName(), "on Create");
 
-        setTitle("Home Task 3");
+        setTitle("Home Task 4");
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_conteiner, new ProfileFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, new ProfileFragment()).commit();
         }
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerLayout = mNavigationView.getHeaderView(0);
         mImageView = (ImageView) headerLayout.findViewById(R.id.drawer_image);
+
+        AppBar = (AppBarLayout) findViewById(R.id.appbar_layout);
+
+        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        mCollapsingToolbar.setExpandedTitleGravity(Gravity.BOTTOM);
+        mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.color_menu));
+        mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.color_menu));
+
 
         setupToolbar();
         setupDrawer();
@@ -88,6 +109,46 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Метод сворачивающий Collapsing Bar
+     * @param collapse булевый параметр определяющий состояние Collapsing Bar
+     */
+    public void lockAppBar(boolean collapse) {
+        params = (AppBarLayout.LayoutParams) mCollapsingToolbar.getLayoutParams();
+        if (collapse) {
+            AppBar.setExpanded(false);
+            AppBarLayout.OnOffsetChangedListener mListener = new AppBarLayout.OnOffsetChangedListener() {
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                    if (mCollapsingToolbar.getHeight() + verticalOffset
+                            <= ViewCompat.getMinimumHeight(mCollapsingToolbar) + getStatusBarHeight()) {
+                        params.setScrollFlags(0);
+                        mCollapsingToolbar.setLayoutParams(params);
+                        AppBar.removeOnOffsetChangedListener(this);
+                    }
+                }
+            };
+            AppBar.removeOnOffsetChangedListener(mListener);
+        } else {
+            AppBar.setExpanded(true);
+            params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL |
+                    AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
+            mCollapsingToolbar.setLayoutParams(params);
+        }
+    }
+
+
+    /**
+     * Возвращает высоту статусбара
+     */
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
 
     @Override
@@ -95,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Lg.e(this.getLocalClassName(), "on Start");
     }
+
 
     @Override
     protected void onPostResume() {
@@ -163,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (mFragment != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_conteiner, mFragment).addToBackStack(null).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, mFragment).addToBackStack(null).commit();
                 }
 
                 mNavigationDrawer.closeDrawers();
@@ -187,14 +249,20 @@ public class MainActivity extends AppCompatActivity {
 
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 0) {
-          finish();
+            finish();
         } else {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.popBackStack();
-            mFragment = fragmentManager.findFragmentById(R.id.main_frame_conteiner);
+            mFragment = fragmentManager.findFragmentById(R.id.main_frame_container);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
     }
-
 
 
 }
