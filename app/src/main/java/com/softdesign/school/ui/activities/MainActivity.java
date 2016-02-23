@@ -31,20 +31,20 @@ import com.softdesign.school.ui.fragments.TeamFragment;
 import com.softdesign.school.utils.Lg;
 import com.softdesign.school.utils.RoundImage;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String VISABLE_KEY = "VISABLE";
+    @Bind(R.id.toolbar) Toolbar mToolbar;
+    @Bind(R.id.navigation_view) NavigationView mNavigationView;
+    @Bind(R.id.navigation_drawer) DrawerLayout mNavigationDrawer;
+    @Bind(R.id.appbar_layout) AppBarLayout AppBar;
+    @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout mCollapsingToolbar;
 
-
-    Toolbar mToolbar;
-    private NavigationView mNavigationView;
-    private DrawerLayout mNavigationDrawer;
     private Fragment mFragment;
-    private FrameLayout mFrameConteiner;
     private ImageView mImageView;
-    public AppBarLayout AppBar;
-    private CollapsingToolbarLayout mCollapsingToolbar;
 
     public AppBarLayout.LayoutParams params = null;
 
@@ -58,22 +58,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Lg.e(this.getLocalClassName(), "on Create");
 
+        ButterKnife.bind(this);
+
         setTitle("Home Task 4");
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_container, new ProfileFragment()).commit();
         }
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        mNavigationDrawer = (DrawerLayout) findViewById(R.id.navigation_drawer);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         View headerLayout = mNavigationView.getHeaderView(0);
         mImageView = (ImageView) headerLayout.findViewById(R.id.drawer_image);
 
-        AppBar = (AppBarLayout) findViewById(R.id.appbar_layout);
-
-        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mCollapsingToolbar.setExpandedTitleGravity(Gravity.BOTTOM);
         mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.color_menu));
         mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.color_menu));

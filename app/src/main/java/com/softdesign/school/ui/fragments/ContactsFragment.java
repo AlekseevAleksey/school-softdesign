@@ -22,6 +22,9 @@ import com.softdesign.school.utils.Lg;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by Glyuk on 04.02.2016.
  */
@@ -29,7 +32,7 @@ public class ContactsFragment extends Fragment {
 
     private static final String TAG = "";
 
-    private RecyclerView mRecyclerView;
+    @Bind(R.id.recycler_view) RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<User> mUsers = new ArrayList<User>();
@@ -43,13 +46,12 @@ public class ContactsFragment extends Fragment {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.fragment_contacts, container, false);
         }
+        ButterKnife.bind(this,convertView);
 
         CollapsingToolbarLayout mCollapsingToolBar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
         mCollapsingToolBar.setTitle(getResources().getString(R.string.drawer_contacts));
 
         generationData();
-
-        mRecyclerView = (RecyclerView) convertView.findViewById(R.id.recycler_view);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
