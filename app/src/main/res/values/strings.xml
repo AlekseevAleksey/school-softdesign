@@ -8,12 +8,32 @@
     <string name="drawer.settings">Настройки</string>
 
     <string name="fragment.contacts.description">Здесь будут контакты!</string>
-    <string name="fragment.profile.description">Здесь будет профиль!</string>
     <string name="fragment.setings.description">Здесь будут настройки!</string>
     <string name="fragment.tasks.description">Здесь будут задачи!</string>
     <string name="fragment.team.description">Здесь будет твоя группа!</string>
+    
+    <!-- Label -->
+    <string name="drawer.profile.phone.label.mobile">Мобильный</string>
+    <string name="drawer.profile.phone.label.email">E-mail</string>
+    <string name="drawer.profile.link.vk.label">Профиль в VK</string>
+    <string name="drawer.profile.link.github.label">Репозиторий</string>
+    <string name="drawer.profile.about.me">Моя супер сила отвлекаться на всякую ненужную мелочь!</string>
 
+    <!-- Data profile -->
     <string name="drawer.profile.fio">Алексеев Алексей</string>
     <string name="drawer.profile.email">Alex@gmail.com</string>
+    <string name="drawer.profile.phone.number">+7 927 777 77 77</string>
+    <string name="drawer.profile.link.vk">https://vk.com/happy_glyuk</string>
+    <string name="drawer.profile.link.github">https://github.com/AlekseevAleksey/School-Softdesign</string>
+    <string name="drawer.profile.about">О себе</string>
+
+
+    <!-- Font Family -->
     <string name="drawer_text">10</string>
+    <string name="ff_regular">sans-serif</string>
+    <string name="ff_medium">sana-serif-medium</string>
+
+
+
+
 </resources>

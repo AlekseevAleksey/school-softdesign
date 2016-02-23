@@ -10,33 +10,72 @@
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:fitsSystemWindows="true">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <ImageView
+                    android:id="@+id/toolbar_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbar_collapsing_image"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/my_image"
+                    app:contentScrim="@color/colorPrimary"/>
+
+
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="16dp"/>
+                app:layout_collapseMode="pin"/>
+                <!--app:popupTheme="@style/AppTheme.PopupOverlay"
+                tools:ignore="NewApi"-->
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
 
         </android.support.design.widget.AppBarLayout>
 
-       <FrameLayout
-           android:id="@+id/main_frame_conteiner"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"></FrameLayout>
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/main_frame_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding"
+            android:src="@drawable/ic_add_24dp"/>
+
 
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/drawer_menu">
