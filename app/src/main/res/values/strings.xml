@@ -11,7 +11,7 @@
     <string name="fragment.setings.description">Здесь будут настройки!</string>
     <string name="fragment.tasks.description">Здесь будут задачи!</string>
     <string name="fragment.team.description">Здесь будет твоя группа!</string>
-    
+
     <!-- Label -->
     <string name="drawer.profile.phone.label.mobile">Мобильный</string>
     <string name="drawer.profile.phone.label.email">E-mail</string>
@@ -33,7 +33,20 @@
     <string name="ff_regular">sans-serif</string>
     <string name="ff_medium">sana-serif-medium</string>
 
+    <string name="red_teams">red team</string>
+    <string name="green_teams">green team</string>
 
+    <string name="button_positive">Готово</string>
+    <string name="button_negative">Отмена</string>
+
+    <string name="title_create_user">Добавить пользователя</string>
+    <string name="title_create_team">Добавить команду</string>
+
+    <string-array name="col">
+        <item>red</item>
+        <item>blue</item>
+        <item>green</item>
+    </string-array>
 
 
 </resources>

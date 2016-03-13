@@ -1,5 +1,6 @@
 package com.softdesign.school.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.softdesign.school.R;
 import com.softdesign.school.data.storage.models.User;
+import com.softdesign.school.ui.activities.ActivityBD;
 import com.softdesign.school.ui.activities.MainActivity;
 import com.softdesign.school.ui.adapters.RecyclerUserAdapter;
 import com.softdesign.school.utils.Lg;
@@ -64,7 +66,7 @@ public class ContactsFragment extends Fragment {
 
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated (@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         /**
          * Устанваливаем кнопку Floating Action Button
@@ -75,6 +77,7 @@ public class ContactsFragment extends Fragment {
         params.anchorGravity = Gravity.BOTTOM | Gravity.RIGHT;
         mFloatButton.setLayoutParams(params);
         mFloatButton.setImageResource(R.drawable.ic_add_24dp);
+
         /**
          * состояние Collapsing Bar свернут
          */
@@ -91,6 +94,7 @@ public class ContactsFragment extends Fragment {
         mUsers.add(new User(getResources().getDrawable(R.drawable.ic_account_circle_24dp), "Иван", "Иванов"));
         mUsers.add(new User(getResources().getDrawable(R.drawable.ic_account_circle_24dp), "Коля", "Николаев"));
     }
+
 
 }
 
