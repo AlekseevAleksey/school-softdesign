@@ -1,5 +1,6 @@
 package com.softdesign.school.ui.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Метод опрорисовки Navigation Drawer и переход по пункатам меню
+     * Метод прорисовки Navigation Drawer и переход по пункатам меню
      */
     private void setupDrawer() {
         Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.avatar);
@@ -213,9 +214,14 @@ public class MainActivity extends AppCompatActivity {
                         mFragment = new TasksFragment();
                         mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
                         break;
+                    /**
+                     * тут временный переход на новый активити
+                     */
                     case R.id.drawer_settings:
-                        mFragment = new SetingsFragment();
-                        mNavigationView.getMenu().findItem(R.id.drawer_settings).setChecked(true);
+                        Intent mIntent = new Intent(MainActivity.this, ActivityBD.class);
+                        startActivity(mIntent);
+                        /*mFragment = new SetingsFragment();
+                        mNavigationView.getMenu().findItem(R.id.drawer_settings).setChecked(true);*/
                         break;
                 }
 
