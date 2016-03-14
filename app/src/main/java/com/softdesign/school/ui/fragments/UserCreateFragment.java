@@ -21,7 +21,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-
+/**
+ * Диалоговое окно добавления пользователя
+ */
 public class UserCreateFragment extends DialogFragment {
 
     @Bind(R.id.first_name)TextView mFirstName;

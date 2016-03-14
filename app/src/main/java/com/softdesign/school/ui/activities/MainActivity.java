@@ -214,6 +214,9 @@ public class MainActivity extends AppCompatActivity {
                         mFragment = new TasksFragment();
                         mNavigationView.getMenu().findItem(R.id.drawer_tasks).setChecked(true);
                         break;
+                    /**
+                     * тут временный переход на новый активити
+                     */
                     case R.id.drawer_settings:
                         Intent mIntent = new Intent(MainActivity.this, ActivityBD.class);
                         startActivity(mIntent);

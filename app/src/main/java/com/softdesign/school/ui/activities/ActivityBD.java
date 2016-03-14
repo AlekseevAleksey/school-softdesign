@@ -48,6 +48,9 @@ public class ActivityBD extends AppCompatActivity implements LoaderManager.Loade
         refreshUserList();
     }
 
+    /**
+     * обработка клика по кнопке добавить пользователя, после чего вызывается диалоговое окно
+     */
     @OnClick(R.id.create_user)
     public void addUser(){
         FragmentManager fm = getSupportFragmentManager();
@@ -57,6 +60,9 @@ public class ActivityBD extends AppCompatActivity implements LoaderManager.Loade
         addUser.show(fm, "add_user");
     }
 
+    /**
+     * обработка клика по кнопке добавить команду, после чего вызывается диалоговое окно
+     */
     @OnClick(R.id.create_team)
     public void addTeam() {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -66,12 +72,17 @@ public class ActivityBD extends AppCompatActivity implements LoaderManager.Loade
         addTeam.show(fragmentManager, "add_team");
     }
 
-
+    /**
+     * обращение к ассинхронному лоудеру
+     */
     @Override
     public Loader<List<UserModel>> onCreateLoader(int id, Bundle args) {
         return new AsyncLoader(this);
     }
 
+    /**
+     *При получении новых данных, очищаем список и добавляем в него новый массив данных
+     */
     @Override
     public void onLoadFinished(Loader<List<UserModel>> loader, List<UserModel> data) {
         mUserList.clear();
@@ -91,6 +102,9 @@ public class ActivityBD extends AppCompatActivity implements LoaderManager.Loade
 
     }
 
+    /**
+     * метод обновления данных
+     */
     public void refreshUserList() {
         getLoaderManager().getLoader(0).forceLoad();
     }

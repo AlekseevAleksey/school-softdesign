@@ -14,7 +14,7 @@ import com.softdesign.school.data.storage.models.UserModel;
 import java.util.List;
 
 /**
- * Created by Glyuk on 08.03.2016.
+ * Адаптер для выпадающего списка
  */
 public class ListViewAdapterTeam extends BaseAdapter {
 
@@ -41,6 +41,9 @@ public class ListViewAdapterTeam extends BaseAdapter {
         return position;
     }
 
+    /**
+     * берем элемент массива, надуваем вьюху и вставляем в поле
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (null == convertView){

@@ -15,13 +15,16 @@ import com.softdesign.school.data.storage.models.TeamModel;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-
+/**
+ * Диалоговое окно добавления команды
+ */
 public class TeamCreateFragment extends DialogFragment {
 
     @Bind(R.id.team_name)
     TextView mTeamName;
 
     public TeamCreateFragment() {}
+
 
     public static TeamCreateFragment create(String title){
         TeamCreateFragment frag = new TeamCreateFragment();

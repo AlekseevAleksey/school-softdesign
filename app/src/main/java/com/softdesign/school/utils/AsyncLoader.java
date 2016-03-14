@@ -9,6 +9,9 @@ import com.softdesign.school.data.storage.models.UserModel;
 
 import java.util.List;
 
+/**
+ * При обращении вызывает команду получения из БД списка пользователей и передает их в виде массива
+ */
 public class AsyncLoader extends AsyncTaskLoader<List<UserModel>> {
 
     public AsyncLoader(Context context) {
